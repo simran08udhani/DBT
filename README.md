@@ -1,4 +1,4 @@
 # DBT
 ## Source DAG
 
-![Source DAG](./Schema DAG.png)
+![Source DAG](./Images/Schema%20DAG.png)
