@@ -1,0 +1,72 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: mydatabase
+    schema: myschema
+    tables:
+      - name: customers
+        description: "Raw customer data"
+        columns:
+          - name: customer_id
+            description: "Primary Key for customers"
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            description: "First name of the customer"
+          - name: last_name
+            description: "Last name of the customer"
+          - name: email
+            description: "Email address of the customer"
+          - name: created_at
+            description: "Timestamp when the customer was created"
+
+      - name: orders
+        description: "Customer orders"
+        columns:
+          - name: order_id
+            description: "Primary Key for orders"
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: "Foreign Key to customers"
+          - name: order_date
+            description: "Date when the order was placed"
+          - name: order_status
+            description: "Status of the order (completed, pending, canceled)"
+          - name: total_amount
+            description: "Total amount for the order"
+
+      - name: order_items
+        description: "Items included in each order"
+        columns:
+          - name: order_item_id
+            description: "Primary Key for order items"
+            tests:
+              - unique
+              - not_null
+          - name: order_id
+            description: "Foreign Key to orders"
+          - name: product_id
+            description: "Foreign Key to products"
+          - name: quantity
+            description: "Quantity of the product in the order"
+          - name: unit_price
+            description: "Price per unit of the product"
+
+      - name: products
+        description: "Product catalog"
+        columns:
+          - name: product_id
+            description: "Primary Key for products"
+            tests:
+              - unique
+              - not_null
+          - name: product_name
+            description: "Name of the product"
+          - name: category
+            description: "Category of the product"
+          - name: price
+            description: "Price of the product"

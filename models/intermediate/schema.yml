@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: int_orders
+    description: "Intermediate model that joins orders with customers."
+    columns:
+      - name: order_id
+        description: "Primary key for orders."
+        tests:
+          - unique
+          - not_null
+      - name: cust_id
+        description: "Foreign key to customers."
+        tests:
+          - not_null
+      - name: customer_full_name
+        description: "Concatenated first_name and last_name of customer."
+      - name: order_date
+        description: "Date when the order was placed."
+      - name: total_amount
+        description: "Total amount for the order."
+        tests:
+          - not_null
+
+  - name: int_order_revenue
+    description: "Intermediate model that calculates total revenue per order."
+    columns:
+      - name: order_id
+        description: "Foreign key to orders."
+        tests:
+          - not_null
+      - name: total_revenue
+        description: "Total revenue for the order (quantity * unit_price)."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+
+
+

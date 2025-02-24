@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Fact table containing order details with customer info."
+    columns:
+      - name: order_id
+        description: "Primary key for orders."
+        tests:
+          - unique
+          - not_null
+      - name: cust_id
+        description: "Foreign key to customers."
+        tests:
+          - not_null
+      - name: order_date
+        description: "Date when the order was placed."
+      - name: total_amount
+        description: "Total amount of the order."
+        tests:
+          - not_null
+      - name: order_year
+        description: "Extracted year from order_date."
+  
+  - name: fct_order_revenue
+    description: "Fact table containing order revenue details."
+    columns:
+      - name: order_id
+        description: "Foreign key to orders."
+        tests:
+          - unique
+          - not_null
+      - name: total_revenue
+        description: "Total revenue generated per order."
+        tests:
+          - not_null
+          # - dbt_expectations.expect_column_values_to_be_between:
+          #     min_value: 0
+          #     strictly: true
+          - is_positive
+      - name: order_status
+        description: "Current status of the order."
+
+  - name: dim_customers
+    description: "Dimension table containing customer details."
+    columns:
+      - name: cust_id
+        description: "Primary key for customers."
+        tests:
+          - unique
+          - not_null
+      - name: customer_full_name
+        description: "Full name of the customer."
+      - name: email
+        description: "Email of the customer."
+      - name: created_at
+        description: "Timestamp when the customer was created."
+
+
+
