@@ -153,7 +153,11 @@ dbt deps
 ```
 dbt run
 ```
-#### **4. Build Models & Run Tests**
+#### **4. Run Data Tests**
+```
+dbt test
+```
+#### 5. Build Models & Run Tests**
 ```
 dbt build
 ```
