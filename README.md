@@ -157,21 +157,26 @@ dbt run
 ```
 dbt build
 ```
+---
+## **Visualizing the Data Pipeline**
 
-## Source DAG
+### Source DAG
 
 ![Source DAG](./Images/Source%20DAG.png)
 
-## Schema DAG
+### Schema DAG
 
 ![Schema DAG](./Images/Schema%20DAG.png)
 
-## Snowflake 
+### Snowflake 
 
 ![Snowflake](./Images/Snowflake.png)
 
+## **Conclusion**
+This project demonstrates how to load, transform, and test data using dbt Cloud with Snowflake. It follows best practices for data modeling, pipeline orchestration, and GitHub integration.
 
-
+## **License**
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
 
