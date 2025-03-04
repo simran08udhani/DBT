@@ -1,18 +1,23 @@
-# DBT
-## Source DAG
+# **DBT Project: Data Transformation using Snowflake and GitHub**
 
-![Source DAG](./Images/Source%20DAG.png)
+## **Overview**
+This project demonstrates how to set up and manage a **dbt (Data Build Tool) project** with **Snowflake** as the data warehouse and **GitHub** for version control. It covers:
+- Loading raw data from CSV files into Snowflake.
+- Transforming data using dbt with **staging, intermediate, and marts layers**.
+- Connecting **dbt Cloud** to **Snowflake** and **GitHub**.
+- Implementing **data quality checks** and best practices.
 
-## Schema DAG
+---
 
-![Schema DAG](./Images/Schema%20DAG.png)
+## **Data Source**
+The **data** folder in the repository contains four CSV files:
+- `customers.csv`
+- `orders.csv`
+- `order_items.csv`
+- `products.csv`
 
-## Snowflake 
-
-![Snowflake](./Images/Snowflake.png)
-
-##Snowflake Script
-
+## **Snowflake Setup**
+Run the following SQL script in Snowflake Worksheets to create the required database, schema, stage and tables:
 ```
 CREATE DATABASE mydatabase;
 
@@ -87,6 +92,86 @@ SELECT * FROM products;
 show tables in mydatabase.myschema;
 
 ```
+
+
+## **Connecting dbt Cloud to Snowflake & GitHub**
+To set up dbt Cloud with Snowflake and GitHub, follow these steps:
+1. **Create a dbt Cloud account** and start a new project.
+2. In **dbt Cloud**, go to **Account Settings** → **Integrations** → **Connect to Snowflake**.
+3. Enter your **Snowflake credentials**:
+   - Account (Dev Snowflake account; `<this>.snowflakecomputing.com`)
+   - User name
+   - Password
+   - Database (`mydatabase`)
+   - Schema (`myschema`)
+   - Warehouse name (`COMPUTE_WH`)
+4. Click **Test Connection** to verify the setup.
+5. Initialize dbt project and define models.
+
+
+## **dbt Project Structure**
+
+```plaintext   
+models/
+  ├── staging/
+  │   ├── schema.yml
+  │   ├── stg_customers.sql
+  │   ├── stg_order_items.sql
+  │   ├── stg_orders.sql
+  │   ├── stg_products.sql
+  ├── intermediate/
+  │   ├── schema.yml
+  │   ├── int_order_revenue.sql
+  │   ├── int_orders.sql
+  ├── marts/
+  │   ├── schema.yml
+  │   ├── dim_customers.sql
+  │   ├── fct_order_revenue.sql
+  │   ├── fct_orders.sql
+  ├── sources.yml
+packages.yml
+dbt_project.yml
+  
+test/
+  ├── generic/
+  │   ├── is_positive.sql
+ ```
+
+## **Running dbt Commands**
+
+After setting up dbt Cloud, execute the following commands:
+
+#### **1. Verify Connection to Snowflake**
+```
+dbt debug
+```
+#### **2. Install Dependencies**
+```
+dbt deps
+```
+#### **3. Run Models & Transform Data**
+```
+dbt run
+```
+#### **4. Build Models & Run Tests**
+```
+dbt build
+```
+
+## Source DAG
+
+![Source DAG](./Images/Source%20DAG.png)
+
+## Schema DAG
+
+![Schema DAG](./Images/Schema%20DAG.png)
+
+## Snowflake 
+
+![Snowflake](./Images/Snowflake.png)
+
+
+
 
 
 
