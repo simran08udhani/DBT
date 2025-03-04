@@ -157,7 +157,7 @@ dbt run
 ```
 dbt test
 ```
-#### 5. Build Models & Run Tests**
+#### **5. Build Models & Run Tests**
 ```
 dbt build
 ```
