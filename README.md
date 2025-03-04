@@ -157,6 +157,29 @@ dbt run
 ```
 dbt build
 ```
+## **Data Modeling & Transformation**
+
+### **Tasks:**
+
+#### **1. Staging Models:**
+- Create separate staging models for each raw table.
+- Rename columns (e.g., `customer_id → cust_id`).
+- Convert string fields to lowercase.
+- Remove records with NULL primary keys.
+
+#### **2. Intermediate Models:**
+- `int_orders`: Join orders with customers & add `customer_full_name`.
+- `int_order_revenue`: Join order_items with products to calculate total revenue.
+
+#### **3. Final Models (Marts Layer):**
+- `fct_orders`: Contains key order details.
+- `fct_order_revenue`: Aggregates revenue per order.
+- `dim_customers`: Stores customer information.
+
+#### **4. Data Tests:**
+- Ensure **Primary Key Uniqueness** (`customer_id`, `order_id`, `product_id`).
+- Ensure **Non-Null Values** (`customer_id`, `order_id`, `total_amount`).
+- Custom test to ensure `total_revenue > 0` in `fct_order_revenue`.
 ---
 ## **Visualizing the Data Pipeline**
 
