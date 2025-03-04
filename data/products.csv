@@ -1,0 +1,11 @@
+product_id,product_name,category,price
+101,Laptop,Electronics,1000
+102,Phone,Electronics,800
+103,Headphones,Accessories,200
+104,Monitor,Electronics,300
+105,Keyboard,Accessories,100
+106,Mouse,Accessories,50
+107,Tablet,Electronics,500
+108,Smartwatch,Electronics,250
+109,Charger,Accessories,30
+110,Camera,Electronics,600
